@@ -3,18 +3,25 @@ const jarvis = express()
 const morgan = require("morgan")
 const mongoose = require("mongoose")
 
-jarvis.use(morgan('dev'))
 jarvis.use(express.json())
+jarvis.use(morgan('dev'))
 
-mongoose.connect("mongodb://localhost:27017/moviedb", 
-{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-},
-() => console.log("Connected to moviedb!")
-)
+// Old way to connect to MongoDB
+// mongoose.connect("mongodb://localhost:27017/moviedb", 
+// {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useCreateIndex: true,
+//     useFindAndModify: false
+// },
+// () => console.log("Connected to moviedb!")
+// )
+
+//NEW way to connect to MongoDB
+main().catch(err => console.log(err));
+async function main() {
+    await mongoose.connect('mongodb://localhost:27017/moviesdb'); console.log("Connected to DB")
+  }
 
 jarvis.use('/movies', require('./routes/movieRouter'))
 

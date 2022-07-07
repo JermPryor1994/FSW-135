@@ -5,10 +5,10 @@ const Movie = require('../models/invetory')
 // Get All
 movieRouter.get("/", (req, res, next) => {
   Movie.find((err, movies) => {
-    // if(err){
-    //   res.status(500)
-    //   return next(err)
-    // }
+    if(err){
+      res.status(500)
+      return next(err)
+    }
     return res.status(200).send(movies)
   })
 })

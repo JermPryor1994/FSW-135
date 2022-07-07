@@ -30,7 +30,7 @@ movieRouter.post("/", (req, res, next) => {
 // Get One
 movieRouter.get("/:movieId", (req, res, next) => {
   const movieId = req.params.movieId
-  const foundMovie = movies.find(movie => movie._id === movieId)
+  const foundMovie = Movie.find(movie => movie._id === movieId)
   if(!foundMovie){
     const error = new Error(`The item with id ${movieId} was not found.`)
     res.status(500)
@@ -71,7 +71,7 @@ movieRouter.delete("/:movieId", (req, res, next) => {
 // Update One
 movieRouter.put("/:movieId", (req, res, next) => {
   Movie.findOneAndUpdate(
-    { _id: req.params.movieID},
+    { _id: req.params.movieId},
     req.body,
     {new: true},
     (err, updatedMovie) => {
