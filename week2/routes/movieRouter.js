@@ -40,17 +40,17 @@ movieRouter.post("/", (req, res, next) => {
 // })
 
 
-// Get by genre
-movieRouter.get("/search/genre", (req, res, next) => {
-  const genre = req.query.genre
-  if(!genre){
-    const error = new Error("You must provide a genre")
-    res.status(500)
-    return next(error)
-  }
-  const filteredMovies = movies.filter(movie => movie.genre === genre)
-  return res.status(200).send(filteredMovies)
-})
+// Get by genre -- Gets all instead of just genre
+// movieRouter.get("/search/genre", (req, res, next) => {
+//   const genre = req.query.genre
+//   if(!genre){
+//     const error = new Error("You must provide a genre")
+//     res.status(500)
+//     return next(error)
+//   }
+//   const filteredMovies = Movie.filter(movie => movie.genre === genre)
+//   return res.status(200).send(filteredMovies)
+// })
 
 // Delete One
 movieRouter.delete("/:movieId", (req, res, next) => {
